@@ -1,0 +1,240 @@
+/**
+ * 全局样式。
+ *
+ * 覆盖 Element Plus 主题变量（见 design-system.md 附录 A），
+ * 定义基础重置、滚动条、流式光标等全局样式。
+ */
+@use './variables.scss' as *;
+
+// ===== Element Plus 主题定制（design-system.md 附录 A）=====
+:root {
+  --el-color-primary: #{$color-primary};
+  --el-color-primary-light-3: #79bbff;
+  --el-color-primary-light-5: #a0cfff;
+  --el-color-primary-light-7: #c6e2ff;
+  --el-color-primary-light-8: #d9ecff;
+  --el-color-primary-light-9: #{$color-primary-light-9};
+  --el-color-primary-dark-2: #{$color-primary-hover};
+  --el-bg-color-page: #{$color-bg-page};
+  --el-fill-color-light: #{$color-bg-card};
+  --el-border-color: #{$color-border};
+  --el-border-color-hover: #{$color-border-hover};
+  --el-text-color-placeholder: #{$color-text-placeholder};
+  --el-text-color-regular: #{$color-text-regular};
+  --el-text-color-primary: #{$color-text-primary};
+  --el-font-family: #{$font-family-sans};
+}
+
+// ===== 基础重置 =====
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font-family-sans;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $color-text-regular;
+  background-color: $color-bg-page;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// 语义化布局
+header,
+nav,
+main,
+aside {
+  display: block;
+}
+
+// ===== 链接 =====
+a {
+  color: $color-primary;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $color-primary-hover;
+  }
+}
+
+// ===== 滚动条 =====
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-border;
+  border-radius: $radius-small;
+
+  &:hover {
+    background: $color-border-hover;
+  }
+}
+
+// ===== 流式光标（design-system.md 7.3）=====
+.streaming-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  background-color: $color-streaming-cursor;
+  vertical-align: text-bottom;
+  animation: cursor-blink 1s infinite;
+}
+
+@keyframes cursor-blink {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+// ===== 焦点可见（无障碍 design-system.md 11）=====
+:focus-visible {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
+}
+
+// ===== 减少动画偏好（design-system.md 10.3）=====
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// ===== 通用工具类 =====
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-ellipsis-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// ===== Markdown 渲染样式（AI 回答）=====
+.markdown-body {
+  font-size: $font-size-chat;
+  line-height: $line-height-chat;
+  color: $color-text-primary;
+  word-break: break-word;
+
+  p {
+    margin: 0 0 $spacing-sm;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ul,
+  ol {
+    margin: 0 0 $spacing-sm;
+    padding-left: $spacing-lg;
+  }
+
+  li {
+    margin-bottom: $spacing-xs;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin: $spacing-base 0 $spacing-sm;
+    font-weight: $font-weight-semibold;
+    line-height: 1.4;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+  h2 {
+    font-size: 17px;
+  }
+  h3 {
+    font-size: 16px;
+  }
+  h4 {
+    font-size: 15px;
+  }
+
+  blockquote {
+    margin: 0 0 $spacing-sm;
+    padding: $spacing-xs $spacing-md;
+    border-left: 3px solid $color-primary-light-9;
+    color: $color-text-regular;
+    background-color: $color-bg-card;
+  }
+
+  code {
+    padding: 2px $spacing-xs;
+    font-family: $font-family-mono;
+    font-size: $font-size-code;
+    background-color: $color-bg-card;
+    border-radius: $radius-small;
+  }
+
+  pre {
+    margin: 0 0 $spacing-sm;
+    padding: $spacing-md;
+    background-color: $color-code-bg;
+    border-radius: $radius-base;
+    overflow-x: auto;
+
+    code {
+      padding: 0;
+      background: transparent;
+      color: #e6e6e6;
+      font-size: $font-size-code;
+      line-height: $line-height-code;
+    }
+  }
+
+  table {
+    width: 100%;
+    margin: 0 0 $spacing-sm;
+    border-collapse: collapse;
+
+    th,
+    td {
+      padding: $spacing-xs $spacing-sm;
+      border: 1px solid $color-border;
+      text-align: left;
+    }
+
+    th {
+      background-color: $color-bg-card;
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  a {
+    color: $color-primary;
+  }
+}

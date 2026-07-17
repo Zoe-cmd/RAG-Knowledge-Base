@@ -1,0 +1,99 @@
+/**
+ * 设计系统 SCSS 变量。
+ *
+ * 对应 docs/design-system.md 第 2~6 节：色彩、字体、间距、圆角、阴影。
+ * 优先使用 Element Plus CSS 变量（--el-*），此处补充自定义变量。
+ */
+
+// ===== 色彩系统 =====
+// 主色（科技蓝）
+$color-primary: #409eff;
+$color-primary-hover: #337ecc;
+$color-primary-active: #2664a6;
+$color-primary-light-9: #ecf5ff;
+
+// 语义色
+$color-success: #67c23a;
+$color-warning: #e6a23c;
+$color-danger: #f56c6c;
+$color-info: #909399;
+
+// 中性色
+$color-bg-page: #fafafa;
+$color-bg-card: #f5f7fa;
+$color-border: #e4e7ed;
+$color-border-hover: #c0c4cc;
+$color-text-placeholder: #909399;
+$color-text-regular: #606266;
+$color-text-primary: #303133;
+$color-text-strong: #1f2329;
+
+// 场景色
+$color-user-bubble: #ecf5ff;
+$color-ai-bubble: #ffffff;
+$color-reference-card: #f5f7fa;
+$color-code-bg: #1f2329;
+$color-streaming-cursor: #409eff;
+
+// 文档类型图标色
+$color-file-pdf: #f56c6c;
+$color-file-docx: #409eff;
+$color-file-md: #67c23a;
+$color-file-txt: #909399;
+
+// ===== 字体系统 =====
+$font-family-sans: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-family-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Courier New', monospace;
+
+$font-size-large: 20px;
+$font-size-medium: 16px;
+$font-size-base: 14px;
+$font-size-small: 12px;
+$font-size-chat: 15px;
+$font-size-code: 13px;
+$font-size-aux: 13px;
+
+$line-height-base: 22px;
+$line-height-chat: 24px;
+$line-height-code: 20px;
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+
+// ===== 间距系统（4px 基准）=====
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-base: 16px;
+$spacing-lg: 20px;
+$spacing-xl: 24px;
+$spacing-2xl: 32px;
+
+// ===== 圆角系统 =====
+$radius-small: 4px;
+$radius-base: 6px;
+$radius-round: 8px;
+
+// ===== 阴影系统 =====
+$shadow-light: 0 2px 8px rgba(0, 0, 0, 0.08);
+$shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.12);
+$shadow-primary: 0 2px 8px rgba(64, 158, 255, 0.3);
+
+// ===== 布局尺寸 =====
+$layout-header-height: 56px;
+$layout-sidebar-width: 280px;
+$layout-sidebar-min-height: 200px;
+$layout-input-min-height: 80px;
+$layout-border: 1px solid #{$color-border};
+
+// ===== Z-Index 层级 =====
+$z-index-content: 1;
+$z-index-fixed: 100;
+$z-index-dropdown: 1000;
+$z-index-overlay: 2000;
+$z-index-dialog: 3000;
+$z-index-message: 4000;
+
+// ===== 响应式断点 =====
+$breakpoint-desktop: 1024px;

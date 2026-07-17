@@ -1,0 +1,45 @@
+# AI 文档知识库（MVP）后端依赖
+# Python 3.11+
+
+# ===== Web 框架 =====
+fastapi==0.110.3
+uvicorn[standard]==0.27.1
+python-multipart==0.0.9
+
+# ===== 数据库 =====
+sqlalchemy==2.0.29
+asyncmy==0.2.9
+# MariaDB 异步驱动
+
+# ===== 配置管理 =====
+pydantic==2.6.4
+pydantic-settings==2.2.1
+python-dotenv==1.0.1
+
+# ===== 向量数据库 =====
+chromadb==0.5.0
+# numpy 版本约束：chromadb 0.5.0 使用了 NumPy 2.0 移除的 np.float_ 等 API
+# 必须使用 numpy<2.0，否则启动时报 AttributeError: np.float_ was removed
+numpy==1.26.4
+
+# ===== AI / LLM =====
+openai==1.28.0
+sentence-transformers==2.7.0
+# bge-m3 本地模型加载
+
+# ===== 文档解析 =====
+PyPDF2==3.0.1
+python-docx==1.1.0
+markdown==3.6
+chardet==5.2.0
+
+# ===== 工具 =====
+aiofiles==23.2.1
+# 异步文件操作
+
+# ===== 测试 =====
+pytest==8.1.1
+pytest-asyncio==0.23.6
+pytest-cov==4.1.0
+httpx==0.27.0
+# FastAPI 测试客户端

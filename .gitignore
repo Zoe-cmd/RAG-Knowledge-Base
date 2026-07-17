@@ -1,0 +1,62 @@
+# ===== 环境变量（含敏感信息）=====
+.env
+.env.local
+.env.*.local
+# 保留 .env.example 作为模板
+!/.env.example
+!**/.env.example
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# ===== 测试与覆盖率 =====
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.pytest_cache/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# ===== 数据目录（含用户上传文档和向量数据）=====
+backend/data/
+data/
+
+# ===== 虚拟环境 =====
+.venv/
+venv/
+env/
+
+# ===== IDE =====
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ===== 系统文件 =====
+.DS_Store
+Thumbs.db
+
+# ===== 日志 =====
+*.log
+logs/
+
+# ===== 前端构建产物 =====
+frontend/dist/
+frontend/node_modules/
+
+# ===== 运维：进程 PID 文件（运行时生成）=====
+backend/backend.pid
+frontend/frontend.pid
+
+# ===== 运维：备份目录 =====
+backups/
