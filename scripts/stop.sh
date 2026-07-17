@@ -13,7 +13,7 @@ YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BACKEND_PID_FILE="$SCRIPT_DIR/backend/backend.pid"
 FRONTEND_PID_FILE="$SCRIPT_DIR/frontend/frontend.pid"
 

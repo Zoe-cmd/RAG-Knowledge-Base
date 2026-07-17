@@ -95,9 +95,10 @@ RAG项目/
 │   ├── todo.md                        # 任务清单
 │   └── handoffs/                      # 阶段交接文档
 │
-├── start.sh / stop.sh / restart.sh    # 一键启动/停止/重启脚本（Linux/macOS）
-├── status.sh / healthcheck.sh         # 状态查看 / 健康检查脚本
-├── start.bat                          # Windows 启动脚本
+├── scripts/                           # 运维脚本目录
+│   ├── start.sh / stop.sh / restart.sh    # 一键启动/停止/重启脚本（Linux/macOS）
+│   ├── status.sh / healthcheck.sh         # 状态查看 / 健康检查脚本
+│   └── start.bat                          # Windows 启动脚本
 ├── .gitignore
 └── README.md                          # 本文件
 ```
@@ -142,7 +143,7 @@ cd ..
 #### 3️⃣ 一键启动
 
 ```bash
-./start.sh
+./scripts/start.sh
 ```
 
 启动成功后访问：
@@ -157,11 +158,11 @@ cd ..
 ### 日常操作
 
 ```bash
-./start.sh        # 启动
-./stop.sh         # 停止
-./restart.sh      # 重启
-./status.sh       # 查看运行状态
-./healthcheck.sh  # 健康检查
+./scripts/start.sh        # 启动
+./scripts/stop.sh         # 停止
+./scripts/restart.sh      # 重启
+./scripts/status.sh       # 查看运行状态
+./scripts/healthcheck.sh  # 健康检查
 ```
 
 > 📖 完整部署指南见 [docs/deployment-plan.md](file:///home/zoe/Public/project/RAG项目/docs/deployment-plan.md)

@@ -7,7 +7,10 @@ REM ============================================================
 
 setlocal enabledelayedexpansion
 
-set SCRIPT_DIR=%~dp0
+REM 脚本位于 scripts/ 子目录，SCRIPT_DIR 指向项目根目录（scripts/ 的父目录）
+pushd "%~dp0.."
+set SCRIPT_DIR=%CD%\
+popd
 set BACKEND_DIR=%SCRIPT_DIR%backend
 set FRONTEND_DIR=%SCRIPT_DIR%frontend
 set BACKEND_LOG_DIR=%BACKEND_DIR%\data\logs

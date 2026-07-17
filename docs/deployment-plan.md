@@ -470,16 +470,16 @@ npm run dev
 cd /path/to/RAG项目
 
 # 一键启动（自动启动前后端，后台运行）
-./start.sh
+./scripts/start.sh
 
 # 查看状态
-./status.sh
+./scripts/status.sh
 
 # 一键停止
-./stop.sh
+./scripts/stop.sh
 
 # 重启
-./restart.sh
+./scripts/restart.sh
 ```
 
 脚本功能详见 [附录 B：启动脚本说明](#附录-b启动脚本说明)。
@@ -565,7 +565,7 @@ logging.basicConfig(
 
 ### 5.2 日志文件（部署时配置）
 
-启动脚本 `start.sh` 已通过输出重定向将日志写入文件：
+启动脚本 `scripts/start.sh` 已通过输出重定向将日志写入文件：
 
 | 日志文件 | 路径 | 说明 |
 |----------|------|------|
@@ -632,10 +632,10 @@ GET /health
 
 ### 6.2 健康检查脚本
 
-项目提供 `healthcheck.sh` 一键检查前后端状态：
+项目提供 `scripts/healthcheck.sh` 一键检查前后端状态：
 
 ```bash
-./healthcheck.sh
+./scripts/healthcheck.sh
 ```
 
 输出示例：
@@ -665,12 +665,12 @@ MVP 阶段为本地单用户，监控以"可用性"为主，不引入 Prometheus
 
 ### 6.4 告警（建议）
 
-本地部署阶段不强制配置告警。如需邮件/消息通知，可结合 `healthcheck.sh` 与 cron：
+本地部署阶段不强制配置告警。如需邮件/消息通知，可结合 `scripts/healthcheck.sh` 与 cron：
 
 ```bash
 # crontab -e
 # 每 5 分钟健康检查，失败时写入日志
-*/5 * * * * /path/to/RAG项目/healthcheck.sh >> /path/to/RAG项目/backend/data/logs/healthcheck.log 2>&1
+*/5 * * * * /path/to/RAG项目/scripts/healthcheck.sh >> /path/to/RAG项目/backend/data/logs/healthcheck.log 2>&1
 ```
 
 ### 6.5 性能基线
@@ -733,7 +733,7 @@ ls -lh "$BACKUP_DIR"
 #### 步骤 1：停止服务
 
 ```bash
-./stop.sh
+./scripts/stop.sh
 ```
 
 #### 步骤 2：恢复 MariaDB
@@ -769,8 +769,8 @@ cp backups/YYYYMMDD_HHMMSS/.env.backup backend/.env
 #### 步骤 5：重启服务并验证
 
 ```bash
-./start.sh
-./healthcheck.sh
+./scripts/start.sh
+./scripts/healthcheck.sh
 ```
 
 ### 7.4 备份验证
@@ -805,7 +805,7 @@ ls -la backups/YYYYMMDD_HHMMSS/chroma/
 检测到回滚条件
     ↓
 1. 停止服务
-   ./stop.sh
+   ./scripts/stop.sh
     ↓
 2. 评估问题
    ├── 配置问题 → 修正 .env → 重启
@@ -815,7 +815,7 @@ ls -la backups/YYYYMMDD_HHMMSS/chroma/
 3. 执行恢复
     ↓
 4. 重启验证
-   ./start.sh && ./healthcheck.sh
+   ./scripts/start.sh && ./scripts/healthcheck.sh
     ↓
 5. 记录事后分析
 ```
@@ -834,7 +834,7 @@ cd backend && pip install -r requirements.txt && cd ..
 cd frontend && npm install && cd ..
 
 # 重启
-./restart.sh
+./scripts/restart.sh
 ```
 
 ---
@@ -847,7 +847,7 @@ cd frontend && npm install && cd ..
 
 | # | 事项 | 影响 | 处理建议 |
 |---|------|------|----------|
-| 1 | **切换 Embedding Provider 后必须重启后端**（M-002） | 切换不生效 | 修改 `.env` 中 `EMBEDDING_PROVIDER` 后执行 `./restart.sh` |
+| 1 | **切换 Embedding Provider 后必须重启后端**（M-002） | 切换不生效 | 修改 `.env` 中 `EMBEDDING_PROVIDER` 后执行 `./scripts/restart.sh` |
 | 2 | **向量维度必须匹配 Provider**（M-007） | 维度不匹配导致检索失败 | OpenAI=1536 维，BGE=1024 维；切换后需重建索引（删除 `data/chroma/` 后重新上传文档） |
 | 3 | **DEBUG=false 时不暴露 API 文档**（SEC-003） | 无法访问 `/docs` | 调试时临时改 `DEBUG=true` 并重启，调试后改回 `false` |
 | 4 | **CORS 配置较宽松**（SEC-009） | 本地部署可接受 | V1.1 收紧为精确匹配来源；本地部署无需处理 |
@@ -877,11 +877,11 @@ cd frontend && npm install && cd ..
 ### 10.1 日常启停
 
 ```bash
-./start.sh        # 启动
-./stop.sh         # 停止
-./restart.sh      # 重启
-./status.sh       # 查看状态
-./healthcheck.sh  # 健康检查
+./scripts/start.sh        # 启动
+./scripts/stop.sh         # 停止
+./scripts/restart.sh      # 重启
+./scripts/status.sh       # 查看状态
+./scripts/healthcheck.sh  # 健康检查
 ```
 
 ### 10.2 日志查看
@@ -917,9 +917,9 @@ mariadb -u root -p -e "DELETE FROM ai_knowledge_base.documents WHERE deleted_at 
 du -sh backend/data/chroma/
 
 # 重建向量索引（切换 Provider 后必须执行）
-./stop.sh
+./scripts/stop.sh
 rm -rf backend/data/chroma/*
-./start.sh
+./scripts/start.sh
 # 然后重新上传所有文档
 ```
 
@@ -985,7 +985,7 @@ npm update
 
 ### A.6 部署后验证
 
-- [ ] `./healthcheck.sh` 全部通过
+- [ ] `./scripts/healthcheck.sh` 全部通过
 - [ ] 上传一个测试 PDF 文档，状态变为 completed
 - [ ] 提问后流式返回答案 + 引用来源
 - [ ] 多轮对话上下文生效
@@ -996,20 +996,20 @@ npm update
 
 ## 附录 B：启动脚本说明
 
-项目根目录提供以下脚本：
+项目 `scripts/` 目录提供以下脚本：
 
 | 脚本 | 功能 | 用法 |
 |------|------|------|
-| `start.sh` | 启动前后端（后台运行） | `./start.sh` |
-| `stop.sh` | 停止前后端 | `./stop.sh` |
-| `restart.sh` | 重启前后端 | `./restart.sh` |
-| `status.sh` | 查看运行状态 | `./status.sh` |
-| `healthcheck.sh` | 健康检查 | `./healthcheck.sh` |
-| `start.bat` | Windows 启动脚本 | 双击或 `start.bat` |
+| `start.sh` | 启动前后端（后台运行） | `./scripts/start.sh` |
+| `stop.sh` | 停止前后端 | `./scripts/stop.sh` |
+| `restart.sh` | 重启前后端 | `./scripts/restart.sh` |
+| `status.sh` | 查看运行状态 | `./scripts/status.sh` |
+| `healthcheck.sh` | 健康检查 | `./scripts/healthcheck.sh` |
+| `start.bat` | Windows 启动脚本 | `scripts\start.bat` 或双击 |
 
 ### 脚本行为说明
 
-**`start.sh`** 会执行以下操作：
+**`scripts/start.sh`** 会执行以下操作：
 
 1. 检查 Python 3.11+ / Node.js 18+ / MariaDB 是否可用
 2. 检查 `backend/.env` 是否存在，不存在则从 `.env.example` 复制并提示编辑
@@ -1019,7 +1019,7 @@ npm update
 6. 后台启动前端 Vite，PID 写入 `frontend/frontend.pid`，日志写入 `frontend/data/logs/frontend.out.log`
 7. 等待 5 秒后执行健康检查，输出启动结果
 
-**`stop.sh`** 会通过 PID 文件优雅停止服务，超时后强制 kill。
+**`scripts/stop.sh`** 会通过 PID 文件优雅停止服务，超时后强制 kill。
 
 ---
 

@@ -38,12 +38,12 @@ DevOps Engineer 完成了 AI 文档知识库（MVP）的本地原生部署方案
 | 交付物 | 类型 | 路径 | 状态 |
 |--------|------|------|------|
 | 部署方案文档 | 文档 | [docs/deployment-plan.md](file:///home/zoe/Public/project/RAG项目/docs/deployment-plan.md) | 完成（v1.0.0，10 章 + 3 附录） |
-| 一键启动脚本 | 脚本 | [start.sh](file:///home/zoe/Public/project/RAG项目/start.sh) | 完成（Linux/macOS，含环境检查、虚拟环境、PID 管理、健康检查） |
-| 一键停止脚本 | 脚本 | [stop.sh](file:///home/zoe/Public/project/RAG项目/stop.sh) | 完成（优雅停止 + 强制 kill + 端口兜底） |
-| 重启脚本 | 脚本 | [restart.sh](file:///home/zoe/Public/project/RAG项目/restart.sh) | 完成 |
-| 状态查看脚本 | 脚本 | [status.sh](file:///home/zoe/Public/project/RAG项目/status.sh) | 完成（进程 + 端口 + HTTP 健康检查） |
-| 健康检查脚本 | 脚本 | [healthcheck.sh](file:///home/zoe/Public/project/RAG项目/healthcheck.sh) | 完成（6 项检查） |
-| Windows 启动脚本 | 脚本 | [start.bat](file:///home/zoe/Public/project/RAG项目/start.bat) | 完成 |
+| 一键启动脚本 | 脚本 | [scripts/start.sh](file:///home/zoe/Public/project/RAG项目/scripts/start.sh) | 完成（Linux/macOS，含环境检查、虚拟环境、PID 管理、健康检查） |
+| 一键停止脚本 | 脚本 | [scripts/stop.sh](file:///home/zoe/Public/project/RAG项目/scripts/stop.sh) | 完成（优雅停止 + 强制 kill + 端口兜底） |
+| 重启脚本 | 脚本 | [scripts/restart.sh](file:///home/zoe/Public/project/RAG项目/scripts/restart.sh) | 完成 |
+| 状态查看脚本 | 脚本 | [scripts/status.sh](file:///home/zoe/Public/project/RAG项目/scripts/status.sh) | 完成（进程 + 端口 + HTTP 健康检查） |
+| 健康检查脚本 | 脚本 | [scripts/healthcheck.sh](file:///home/zoe/Public/project/RAG项目/scripts/healthcheck.sh) | 完成（6 项检查） |
+| Windows 启动脚本 | 脚本 | [scripts/start.bat](file:///home/zoe/Public/project/RAG项目/scripts/start.bat) | 完成 |
 | 后端环境变量模板 | 配置 | [backend/.env.example](file:///home/zoe/Public/project/RAG项目/backend/.env.example) | 完成（[必填]/[可选] 标注） |
 | 项目 README | 文档 | [README.md](file:///home/zoe/Public/project/RAG项目/README.md) | 完成（截图位待补） |
 | .gitignore 补充 | 配置 | [.gitignore](file:///home/zoe/Public/project/RAG项目/.gitignore) | 完成（排除 PID/备份） |
